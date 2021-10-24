@@ -4,7 +4,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql" %>
 
-
+<%@ include file="fuentedatos.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -84,10 +84,8 @@
         <br>
         <br>
         <h2 style="font-style: italic">Listado de  Libros</h2>
-        <sql:setDataSource var="fuente1" driver="org.mariadb.jdbc.Driver"
-                           url="jdbc:mariadb://localhost:3308/grupo10"
-                           user="root"  password = ""/>
-        <sql:query dataSource = "${fuente1}" var = "result">
+
+        <sql:query dataSource = "${fuenteDatos}" var = "result">
             SELECT * from libro;
         </sql:query>
          <table>

@@ -2,6 +2,7 @@
 <%@ page import = "java.io.*,java.util.*,java.sql.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+
 <%@ include file="fuentedatos.jsp" %>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
     </head>
     <body>
         <h1>Actualizar libro</h1>
-        <sql:query dataSource = "${fuente}" var = "result">
+        <sql:query dataSource = "${fuenteDatos}" var = "result">
             SELECT * from libro where id=?;
             <sql:param value="${param.id}"/>
         </sql:query>

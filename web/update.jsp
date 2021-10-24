@@ -20,7 +20,7 @@
                            url="jdbc:mariadb://localhost:3308/grupo10"
                            user="root"  password = ""/>
         
-        <sql:update dataSource = "${fuente}" var = "count">
+        <sql:update dataSource = "${fuenteDatos}" var = "count">
             UPDATE libro SET isbn=?,titulo=?,autor=?,editorial=?   WHERE  id=?
             <sql:param value="${param.isbn}"/>
             <sql:param value = "${param.titulo}" />

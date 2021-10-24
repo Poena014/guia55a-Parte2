@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 
+<%@include file="fuentedatos.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,12 +14,7 @@
     </head>
     <body>
         <h1>ELIMINAR UN REGISTRO DE LA TABLA</h1>
-        <sql:setDataSource var = "fuenteDatos" driver = "org.mariadb.jdbc.Driver"
-                           url = "jdbc:mariadb://localhost:3308/grupo10"
-                           user = "root"  password = ""/>
 
-        <c:set var = "Id" value = "${param.id}"/>
-        
         <sql:update dataSource = "${fuenteDatos}" var = "count">
             DELETE FROM libro WHERE Id = ?
             <sql:param value = "${Id}" />
@@ -27,7 +23,8 @@
         <sql:query dataSource = "${fuenteDatos}" var = "result">
             SELECT * from libro;
         </sql:query>
-            <h3>Favor verifique que el registro ha sido borrado con éxito</h3>
+            
+        <h3>Favor verifique que el registro ha sido borrado con éxito</h3>
         <table border = "1" width = "100%">
             <tr>
                 <th>id</th>
@@ -36,7 +33,6 @@
                 <th>autor</th>
                 <th>editorial</th>
             </tr>
-
             <c:forEach var = "row" items = "${result.rows}">
                 <tr>
                     <td><c:out value = "${row.id}"/></td>
@@ -48,5 +44,6 @@
             </c:forEach>
         </table>    
         <p>Información eliminada correctamente <a href="index.jsp">Regresar</a> </p>
+        
     </body>
 </html>
